@@ -96,7 +96,7 @@ public class PetStoreService {
 	
 	
 	
-	public Employee findEmployeeById(Long petStoreId, Long employeeId) {
+	public Employee findEmployeeById(Long employeeId, Long petStoreId) {
 		
 		Employee employee = employeeDao.findById(employeeId).orElseThrow(() -> 
 		new NoSuchElementException("Employee with ID=" + employeeId + " was not found."));
@@ -110,7 +110,7 @@ public class PetStoreService {
 		
 	}
 	
-	public Employee findOrCreateEmployee(Long employeeId, Long petStoreId) {
+	public Employee findOrCreateEmployee(Long petStoreId, Long employeeId) {
 		
 		Employee employee = new Employee();
 		
@@ -135,7 +135,6 @@ public class PetStoreService {
 		employee.setEmployeeLastName(petStoreEmployee.getEmployeeLastName());
 		employee.setEmployeeJobTitle(petStoreEmployee.getEmployeeJobTitle());
 		employee.setEmployeePhone(petStoreEmployee.getEmployeePhone());
-		employee.setPetStore(petStoreEmployee.getPetStore());
 
 		
 	}
@@ -149,10 +148,10 @@ public class PetStoreService {
 		Customer customer = findOrCreateCustomer(petStoreId, customerId);
 		copyCustomerFields(customer, petStoreCustomer);
 		
-		if(!customer.getPetStores().contains(petStore)) {
+	
 			customer.getPetStores().add(petStore);
 			petStore.getCustomers().add(customer);
-		}
+		
 		
 		Customer dbCustomer = customerDao.save(customer);
 		return new PetStoreCustomer(dbCustomer);
@@ -162,7 +161,7 @@ public class PetStoreService {
 	
 	
 	
-	public Customer findCustomerById(Long petStoreId, Long customerId) {
+	public Customer findCustomerById(Long customerId, Long petStoreId) {
 		
 		Customer customer = customerDao.findById(customerId).orElseThrow(() -> 
 		new NoSuchElementException("Customer with ID=" + customerId + " was not found."));
@@ -184,7 +183,7 @@ public class PetStoreService {
 	
 	
 	
-	public Customer findOrCreateCustomer(Long customerId, Long petStoreId) {
+	public Customer findOrCreateCustomer(Long petStoreId, Long customerId) {
 		
 		Customer customer = new Customer();
 		

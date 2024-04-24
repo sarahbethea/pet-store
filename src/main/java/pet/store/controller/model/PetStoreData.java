@@ -27,6 +27,7 @@ private Long petStoreId;
 	private Set<PetStoreEmployee> employees = new HashSet<>();
 	
 	public PetStoreData(PetStore petStore) {
+		petStoreId = petStore.getPetStoreId();
 		petStoreName = petStore.getPetStoreName();
 		petStoreAddress = petStore.getPetStoreAddress();
 		petStoreCity = petStore.getPetStoreCity();
@@ -55,7 +56,10 @@ private Long petStoreId;
 		private String customerEmail;
 		
 		public PetStoreCustomer(Customer customer) {
-			
+			customerId = customer.getCustomerId();
+			customerFirstName = customer.getCustomerFirstName();
+			customerLastName = customer.getCustomerLastName();
+			customerEmail = customer.getCustomerEmail();
 		}
 	}
 	
@@ -68,10 +72,16 @@ private Long petStoreId;
 		private String employeeLastName;
 		private String employeePhone;
 		private String employeeJobTitle;
-		private PetStore petStore;
 		
 		public PetStoreEmployee(Employee employee) {
 			
+			employeeId = employee.getEmployeeId();
+			employeeFirstName = employee.getEmployeeFirstName();
+			employeeLastName = employee.getEmployeeLastName();
+			employeePhone = employee.getEmployeePhone();
+			employeeJobTitle = employee.getEmployeeJobTitle();
+			
+					
 		}
 	}
 	

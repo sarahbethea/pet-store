@@ -52,10 +52,7 @@ public class PetStoreController {
 		return Map.of("message", "Deletion of pet store with ID=" + petStoreId + " was successful.");
 	}
 	
-	
-	
-	
-	
+
 	
 	@PostMapping("/{petStoreId}/employee")
 	@ResponseStatus(code = HttpStatus.CREATED)
@@ -66,12 +63,12 @@ public class PetStoreController {
 		
 	}
 	
-	@PostMapping("/{customerId}/customer")
+	@PostMapping("/{petStoreId}/customer")
 	@ResponseStatus(code = HttpStatus.CREATED)
-	public PetStoreCustomer insertCustomer(@PathVariable Long customerId,
+	public PetStoreCustomer insertCustomer(@PathVariable Long petStoreId,
 			@RequestBody PetStoreCustomer petStoreCustomer) {
-		log.info("Creating customer with ID= {} ", customerId);
-		return petStoreService.saveCustomer(customerId, petStoreCustomer);
+		log.info("Creating customer for pet store with ID= {} ", petStoreId);
+		return petStoreService.saveCustomer(petStoreId, petStoreCustomer);
 		
 	}
 	
